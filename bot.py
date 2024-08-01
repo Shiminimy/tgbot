@@ -1,19 +1,40 @@
+
+import aiogram
 import asyncio
-import logging
-
-from aiogram import Bot, Dispatcher
-
+from aiogram import Dispatcher, Bot
 from config import TOKEN
+from aiogram.filters import CommandStart
+from aiogram.types import Message
+from funcshional import handlers
+dp = Dispatcher()
 
-#from app.handlers import router
 
+
+handlers.reg_handler(dp)
 bot = Bot(token=TOKEN)
-dp = Dispatcher
+
+
+async def start(_):
+    print("Starting Bot /..... Done!")
+
+
 
 
 async def main():
-    dp.include_router(router) # type: ignore
-    await dp.start_polling(bot)
+    await dp.start_polling(bot, on_startup=start)
+    
 
-if __name__ == '__main__':
-    asyncio.run(main())
+
+
+if __name__ == "__main__":
+
+    try:
+        asyncio.run(main())
+        
+    except KeyboardInterrupt:
+        print("Stopped")   
+
+
+
+
+
