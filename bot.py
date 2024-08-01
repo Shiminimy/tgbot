@@ -13,9 +13,26 @@ handlers.reg_handler(dp)
 bot = Bot(token=TOKEN)
 
 
+async def start(_):
+    print("Starting Bot /..... Done!")
+
+
+
 
 async def main():
-    await dp.start_polling(bot)
+    await dp.start_polling(bot, on_startup=start)
+    
+
+
 
 if __name__ == "__main__":
-    asyncio.run(main())   
+
+    try:
+        asyncio.run(main())
+        
+    except KeyboardInterrupt:
+        print("Stopped")   
+
+
+
+
